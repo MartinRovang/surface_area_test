@@ -16,3 +16,7 @@ def cone_surface_area(radius, height):
     total_surface_area = lateral_surface_area + base_area
 
     return total_surface_area
+
+
+def cube_surface_area(side_length):
+    return 6 * side_length**2

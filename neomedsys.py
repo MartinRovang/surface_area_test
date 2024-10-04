@@ -22,7 +22,7 @@ def calculate_surface_area_skimage_mm2(segmentation_volume: np.ndarray, resoluti
         segmentation_volume = np.pad(segmentation_volume, ((0, 0), (0, 0), (0, 1)), mode='constant')
 
     # Generate the mesh using the marching cubes algorithm
-    verts, faces, _, _ = measure.marching_cubes(segmentation_volume, level=0.5, spacing=resolution)
+    verts, faces, _, _ = measure.marching_cubes(segmentation_volume, level=None, spacing=resolution, method='lorensen')
 
     # Calculate the surface area of the mesh in mm²
     surface_area_mm2 = mesh_surface_area(verts, faces)
