@@ -12,16 +12,20 @@ from rich.console import Console
 from rich.table import Table
 
 # Parameters for the cone
-radius = 100
+radius = 70
 height = 30
-grid_size = 200
+grid_size = 100
 resolution = [1, 1, 1]
 
-side_length = 100
+side_length = 50
 
 # Create a cone using the create_cone module
+time_create_cone = time.time()
 cone = create_cone.create_cone(radius, height, grid_size, resolution)
 cube = create_cube.create_cube(side_length, grid_size, resolution)
+time_create_cone = time.time() - time_create_cone
+
+print(f"Time to create cone: {time_create_cone:.2f} s")
 
 # Calculate the surface area of the cone using the theoretical formula
 theoretical_surface_area_cone = theoretical.cone_surface_area(radius, height)

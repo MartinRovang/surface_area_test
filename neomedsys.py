@@ -15,14 +15,11 @@ def calculate_surface_area_skimage_mm2(segmentation_volume: np.ndarray, resoluti
         float: The surface area in cm².
     """
 
-    # Check if any of the axes are of size 1 (indicating a 2D slice)
-    is_2d = np.any([dim == 1 for dim in segmentation_volume.shape])
-    if is_2d:
-        # Pad the volume to make it 3D if it's 2D
-        segmentation_volume = np.pad(segmentation_volume, ((0, 0), (0, 0), (0, 1)), mode='constant')
+    # pad the volume to make sure we don't get any border cases
+    segmentation_volume = np.pad(segmentation_volume, 1, mode='constant')
 
     # Generate the mesh using the marching cubes algorithm
-    verts, faces, _, _ = measure.marching_cubes(segmentation_volume, level=None, spacing=resolution, method='lorensen')
+    verts, faces, _, _ = measure.marching_cubes(segmentation_volume, level=0.5, spacing=resolution, method='lorensen')
 
     # Calculate the surface area of the mesh in mm²
     surface_area_mm2 = mesh_surface_area(verts, faces)
