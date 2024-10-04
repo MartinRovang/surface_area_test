@@ -22,7 +22,7 @@ def calculate_surface_area_pyrad(segmentation_volume: np.ndarray, resolution: np
     extractor.enableFeatureClassByName('shape')
 
     # make sikt object
-    segmentation_volume = sitk.GetImageFromArray(segmentation_volume)
+    segmentation_volume = sitk.GetImageFromArray(np.transpose(segmentation_volume))
     segmentation_volume.SetSpacing(resolution)
 
     # Extract features from the NIfTI image
