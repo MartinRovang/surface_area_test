@@ -13,7 +13,6 @@ height = 50
 grid_size = 100
 resolution = [1, 1, 1]
 
-
 # Create a cone using the create_cone module
 cone = create_cone.create_cone(radius, height, grid_size, resolution)
 
@@ -39,7 +38,7 @@ console = Console()
 table = Table(title="Surface Area Comparison")
 
 # Add columns
-table.add_column("Description", justify="left", style="cyan", no_wrap=True)
+table.add_column(f"r={radius}, h={height}, grid={grid_size}", justify="right", style="cyan")
 table.add_column("Surface Area (mm²)", justify="right", style="magenta")
 table.add_column("Error (%)", justify="right", style="yellow")
 
