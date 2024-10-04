@@ -12,8 +12,8 @@ from rich.console import Console
 from rich.table import Table
 
 # Parameters for the cone
-radius = 70
-height = 30
+radius = 40
+height = 10
 grid_size = 100
 resolution = [1, 1, 1]
 
@@ -26,6 +26,15 @@ cube = create_cube.create_cube(side_length, grid_size, resolution)
 time_create_cone = time.time() - time_create_cone
 
 print(f"Time to create cone: {time_create_cone:.2f} s")
+
+
+time_simple_cone = time.time()
+simple_surface_area_cone = simpleik.calculate_surface_area_sitk(cube, resolution)
+time_simple_cone = time.time() - time_simple_cone
+
+time_simple_cube = time.time()
+simple_surface_area_cube = simpleik.calculate_surface_area_sitk(cube, resolution)
+time_simple_cube = time.time() - time_simple_cube
 
 # Calculate the surface area of the cone using the theoretical formula
 theoretical_surface_area_cone = theoretical.cone_surface_area(radius, height)
@@ -49,14 +58,6 @@ time_pyrad_cone = time.time() - time_pyrad_cone
 time_pyrad_cube = time.time()
 pyrad_surface_area_cube = pyrad.calculate_surface_area_pyrad(cube, resolution)
 time_pyrad_cube = time.time() - time_pyrad_cube
-
-time_simple_cone = time.time()
-simple_surface_area_cone = simpleik.calculate_surface_area_sitk(mask_path='./binary_cone.nii.gz')
-time_simple_cone = time.time() - time_simple_cone
-
-time_simple_cube = time.time()
-simple_surface_area_cube = simpleik.calculate_surface_area_sitk(mask_path='./binary_cube.nii.gz')
-time_simple_cube = time.time() - time_simple_cube
 
 # the differences in %
 diff_neomedsys_cone = (theoretical_surface_area_cone - neomedsys_surface_area_cone) / theoretical_surface_area_cone * 100
