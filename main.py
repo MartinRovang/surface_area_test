@@ -9,7 +9,7 @@ from rich.table import Table
 
 # Parameters for the cone
 radius = 20
-height = 50
+height = 100
 grid_size = 100
 resolution = [1, 1, 1]
 

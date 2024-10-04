@@ -8,5 +8,11 @@ def cone_surface_area(radius, height):
     
     # Calculate the lateral surface area
     lateral_surface_area = np.pi * radius * slant_height
-    
-    return lateral_surface_area
+
+    # Calculate the base area
+    base_area = np.pi * radius**2
+
+    # Calculate the total surface area
+    total_surface_area = lateral_surface_area + base_area
+
+    return total_surface_area
